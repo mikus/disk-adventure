@@ -89,17 +89,9 @@ def ls():
 
 
 def distance(curpath, path):
-    d = list(Path(curpath).components())
-    g = list(Path(path).components())
-    for x in d:
-        if x in g: g.remove(x)
-    a = len(g)
-    d = list(Path(curpath).components())
-    g = list(Path(path).components())
-    for x in g:
-        if x in d: d.remove(x)
-    b = len(d)
-    return a + b
+    d = set(Path(curpath).components())
+    g = set(Path(path).components())
+    return len(d.symmetric_difference(g))
 
 
 commands = {
